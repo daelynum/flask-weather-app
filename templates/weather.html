@@ -27,13 +27,16 @@
 <div class="container">
   <div class="row">
     <div class="col-sm"></div>
-    <div class="col-sm">
-        <img src="http://openweathermap.org/img/w/{{ weather.icon }}.png" alt="Image">
+        <div class="col-sm">
+            {%if weather%}
+            <img src="http://openweathermap.org/img/w/{{ weather.icon }}.png" alt="Image">
 
-        {{weather.city}}
+                {{weather.city}}
 
-        {{weather.temperature}}°
-    </div>
+                {{weather.temperature}}°
+
+            {%endif%}
+        </div>
     <div class="col-sm"></div>
   </div>
 </div>

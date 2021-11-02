@@ -9,22 +9,21 @@ key = ''
 
 @app.route('/', methods=['GET', 'POST'])
 def get_weather():
-    city = []
     if request.method == 'POST':
-        city.append(request.form.get('city'))
-    r = requests.get(URL.format(city[0], key)).json()
+        city = [request.form.get('city')]
+        r = requests.get(URL.format(city[0], key)).json()
+        icon = r['weather'][0]['icon']
+        temperature = r['main']['temp']
+        city = r['name']
 
-    icon = r['weather'][0]['icon']
-    temperature = r['main']['temp']
-    city = r['name']
+        weather_data = {
+            'city': city,
+            'temperature': temperature,
+            'icon': icon,
+        }
+        return render_template('weather.html', weather=weather_data)
+    return render_template('weather.html')
 
-    weather_data = {
-        'city': city,
-        'temperature': temperature,
-        'icon': icon,
-    }
-
-    return render_template('weather.html', weather=weather_data)
 
 
 if __name__ == "__main__":
