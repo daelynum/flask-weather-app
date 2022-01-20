@@ -1,2 +1,2 @@
 # flask-weather-app
-weather web app (using yandex api)
+weather web app (using openweathermap api)
